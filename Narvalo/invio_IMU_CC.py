@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/env python
 #   Gter Copyleft 2017
 #   Roberto Marzocchi
 #
@@ -142,10 +142,11 @@ while True:
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((TCP_IP, TCP_PORT))
 		s.send(MESSAGE)
-		#data = s.recv(BUFFER_SIZE)
+		print "Message sent!"
+		data = s.recv(BUFFER_SIZE)
 		#s.close()
 		check_connection=1
-		#print "received data:", data
+		print "received data:", data
 	except:
 		print "Socket connection failed!"
 		print "TCP_IP=", TCP_IP
