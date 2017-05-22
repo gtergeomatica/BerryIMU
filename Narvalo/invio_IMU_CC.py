@@ -37,10 +37,30 @@ from datetime import datetime, date
 #TCP_IP = '192.168.2.126'
 # in questo modo gli faccio leggere i dati da terminale (IP address e ID apparato)
 #print(sys.argv)
-TCP_IP = sys.argv[1]
+#TCP_IP = sys.argv[1]
 # qua specifico l'ID dell'apparato
 
+#in questo modo leggo invece i messaggi da file 
+nomefile1="/home/pi/NARVALO/DATI/CONF/narvalo_conf.dat"
+print "\n\nReading the %s file " %nomefile1
+
+# legge dal file coordinate 
+parametri=[]
+
+i=0
+cc=0
+for riga in file(nomefile1): # lettura file 
+	#print riga
+	#line = riga
+	parametri.append(riga.strip('\n'))
+	i+=1
+
+id_apparato=parametri[0]
+TCP_IP=parametri[2]
+
+
 print "#######################################"
+print "Id apparato:", id_apparato
 print "IP CC Anticollisione:", TCP_IP
 print "#######################################"
 
@@ -117,18 +137,18 @@ while True:
 	#print " Gyr:", "{:+8.3f}".format(m9g[0]), "{:+8.3f}".format(m9g[1]), "{:+8.3f}".format(m9g[2]),
 	#print " Mag:", "{:+7.3f}".format(m9m[0]), "{:+7.3f}".format(m9m[1]), "{:+7.3f}".format(m9m[2])
 
-
 	try:
 		if (check_connection==0):
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((TCP_IP, TCP_PORT))
 		s.send(MESSAGE)
-		data = s.recv(BUFFER_SIZE)
+		#data = s.recv(BUFFER_SIZE)
 		#s.close()
 		check_connection=1
-		print "received data:", data
+		#print "received data:", data
 	except:
 		print "Socket connection failed!"
+		print "TCP_IP=", TCP_IP
 		check_connection=0
 
 
