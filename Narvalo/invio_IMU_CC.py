@@ -56,7 +56,7 @@ for riga in file(nomefile1): # lettura file
 	i+=1
 
 id_apparato=parametri[0]
-TCP_IP=parametri[2]
+TCP_IP=parametri[2].replace("\\\"","")
 
 
 print "#######################################"
