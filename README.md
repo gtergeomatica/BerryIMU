@@ -41,3 +41,20 @@ Head on over to http://ozzmaker.com/berryimu-quick-start-guide/ for full details
 <h2>Teensy 3.6</h2>
 
 ![Wiring Diagram BerryIMU](http://ozzmaker.com/wp-content/uploads/2015/01/Teensy3.6BerryIMUWire1.png "Wiring Diagram")
+
+
+# NB Enable the I2C interface / Abilitare l'interfaccia I2C
+1) Open your config.txt file:
+
+sudo nano /boot/config.txt
+
+and add the following at the bottom:
+dtparam=i2c_arm=on
+
+Then save.
+
+2)run "raspi-config" and enable the I2C interface
+sudo raspi-config
+
+
+
